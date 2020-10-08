@@ -1,7 +1,7 @@
 Instructions:
 
-- On 1 st boot after install press any key on PFsense logo
-    Boot in Single User mode
+- On 1 st boot after installd pfSense press any key on pfSense logo
+    Boot in Single User Mode
     Press enter for /bin/sh shell
 
 - Connect your USB stick (Fat32 formatted) with driver module file (if_ix.ko)
