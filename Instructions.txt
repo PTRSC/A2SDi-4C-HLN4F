@@ -1,0 +1,34 @@
+Instructions:
+
+- On 1 st boot after install press any key on PFsense logo
+    Boot in Single User mode
+    Press enter for /bin/sh shell
+
+- Connect your USB stick (Fat32 formatted) with driver module file (if_ix.ko)
+
+- Check what's it's name
+    ls /dev/da*
+
+- Mount USB
+    mount_msdosfs /dev/da0s1 /media
+
+- Unload existing if_ix module - check it's ID if necessary /sbin/kldstat )
+    /sbin/kldunload -i 2
+
+- Mount root as RW
+    mount -rw /
+
+- Rename existing if_ix.ko module
+    mv /boot/kernel/if_ix.ko /boot/kernel/if_ix.ko.blacklisted
+
+- Copy new module from USB
+    cp /media/if_ix.ko /boot/modules/
+
+- Fix permissions
+    chmod 555 /boot/modules/if_ix.ko
+
+- Make loader.conf.local
+    echo 'if_ix_load="YES"' >> /boot/loader.conf.local
+
+- Reboot and enjoy an working Intel NIC
+    reboot
